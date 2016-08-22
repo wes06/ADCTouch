@@ -13,11 +13,15 @@ int ADCTouchClass::read(byte ADCChannel, int samples)
 	{
 		pinMode(ADCChannel, INPUT_PULLUP);
 		
+		//DDRC &= ~(1 << "ADCChannel");
+		//PORTC |= (1 << "ADCChannel");
+
 		ADMUX |=   0b11111;
 		ADCSRA |= (1<<ADSC); //start conversion
 		while(!(ADCSRA & (1<<ADIF))); //wait for conversion to finish
 		ADCSRA |= (1<<ADIF); //reset the flag
 		
+		//DDRC &= ~(1 << "ADCChannel");
 		pinMode(ADCChannel, INPUT);
 		_value += analogRead(ADCChannel);
 	}
