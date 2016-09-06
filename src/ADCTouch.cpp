@@ -6,7 +6,7 @@
 #include "Arduino.h"
 #include "ADCTouch.h"
 
-int ADCTouchClass::read(byte ADCChannel, int samples)
+int ADCTouchClass::read(int ADCChannel, int samples)
 {
 	long _value = 0;
 	for(int _counter = 0; _counter < samples; _counter ++)
