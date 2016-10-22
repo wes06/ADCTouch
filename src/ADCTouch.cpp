@@ -21,6 +21,9 @@ int ADCTouchClass::read(int ADCChannel, int samples)
 		while(!(ADCSRA & (1<<ADIF))); //wait for conversion to finish
 		ADCSRA |= (1<<ADIF); //reset the flag
 		
+		//not disabling the pull up gives better readings in not galvanically isolated touch pads.
+		//PORTC &= ~_BV(ADCChannel);
+		
 		DDRC &= ~(1 << ADCChannel);
 		//pinMode(ADCChannel, INPUT);
 		_value += analogRead(ADCChannel);
