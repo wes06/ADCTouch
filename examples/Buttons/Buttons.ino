@@ -8,14 +8,14 @@ void setup()
 
     Serial.begin(9600);
 
-    ref0 = ADCTouch.read(A0, 500);    //create reference values to 
-    ref1 = ADCTouch.read(A1, 500);    //account for the capacitance of the pad
+    ref0 = ADCTouch.read(0, 500);    //create reference values to 
+    ref1 = ADCTouch.read(1, 500);    //account for the capacitance of the pad
 } 
 
 void loop() 
 {
-    int value0 = ADCTouch.read(A0);   //no second parameter
-    int value1 = ADCTouch.read(A1);   //   --> 100 samples
+    int value0 = ADCTouch.read(0);   //no second parameter
+    int value1 = ADCTouch.read(1);   //   --> 100 samples
 
     value0 -= ref0;       //remove offset
     value1 -= ref1;
